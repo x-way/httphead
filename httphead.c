@@ -240,9 +240,9 @@ int main ( int argc, char* argv[] ) {
 	remote_host_addr->sin_family = AF_INET;
 	remote_host_addr->sin_addr = *((struct in_addr*) remote_hostent->h_addr);
 	if ( port == NULL ) {
-		remote_host_addr->sin_port = 80;
+		remote_host_addr->sin_port = htons(80);
 	} else {
-		remote_host_addr->sin_port = atoi(port);
+		remote_host_addr->sin_port = htons(atoi(port));
 	}
 
 	if ( (sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) == -1 ) {
